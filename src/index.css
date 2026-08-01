@@ -1,3 +1,4 @@
+@import "./fonts/fonts.css";
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -5,13 +6,13 @@
 @theme {
     --font-geist: Geist;
 
-    --color-primary: #2563eb;
+    --color-primary: #fa4e67;
     --color-tint-gray: #f8f8f8;
     --color-tint-black: #1f1f1f;
     --color-black: #0a0a0a;
 
-    --color-primary-start: #8aa6f2;
-    --color-primary-end: #2563eb;
+    --color-primary-start: #ff879a;
+    --color-primary-end: #fa4e67;
     --color-secondary-start: #374151;
     --color-secondary-end: #111827;
 
@@ -21,10 +22,15 @@
     /* ── New design system tokens ─────────────────────────── */
     /* Page backgrounds */
     --color-ink: #1a1a2e;
+    --color-ink-deep: #0d0d1a;
+
+    /* Light-mode page background — warm off-white */
+    --color-parchment: #f9f7f4;
 
     /* UI surfaces */
     --color-surface: #ffffff;
-    /* card bg in dark mode — solid, not glass*/
+    /* Dark mode card background */
+    --color-card-bg: #16213e;
 
     /* Secondary text / borders */
     --color-muted: #6b7280;
@@ -59,6 +65,7 @@
     --font-size-xss: 12px;
 }
 
+/* ── Keyframe Animations ──────────────────────────────────── */
 @keyframes marquee-rtl {
     from {
         transform: translateX(0);
@@ -77,6 +84,71 @@
     to {
         transform: translateX(0);
     }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50%       { transform: translateY(-20px) scale(1.05); }
+}
+
+@keyframes floatReverse {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50%       { transform: translateY(20px) scale(0.95); }
+}
+
+@keyframes pulse-soft {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.08); }
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes typing-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+@keyframes role-slide {
+    0%   { transform: translateY(0%);   opacity: 1; }
+    20%  { transform: translateY(0%);   opacity: 1; }
+    25%  { transform: translateY(-100%); opacity: 0; }
+    26%  { transform: translateY(100%); opacity: 0; }
+    30%  { transform: translateY(0%);   opacity: 1; }
+    100% { transform: translateY(0%);   opacity: 1; }
+}
+
+@keyframes counter-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+    from { background-position: -200% center; }
+    to   { background-position: 200% center; }
 }
 
 @layer base {
@@ -99,7 +171,7 @@
 
     html.dark body {
         background-color: var(--color-ink);
-        color: var(--color-parchment);
+        color: var(--color-surface);
     }
 
     body::-webkit-scrollbar {
@@ -112,12 +184,12 @@
     }
 
     ::-webkit-scrollbar-track {
-        background-color: var(--color-white);
+        background-color: var(--color-parchment);
     }
 
     ::-webkit-scrollbar-thumb {
         border-radius: 10px;
-        background-color: color-mix(in srgb, var(--color-black) 65%, transparent);
+        background-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
     }
 
     h1,
@@ -209,6 +281,7 @@
     }
 }
 
+/* ── Layout Utilities ─────────────────────────────────────── */
 @utility container {
     max-width: 1320px;
     padding-inline: 20px;
@@ -221,6 +294,7 @@
     margin-inline: auto;
 }
 
+/* ── Glass Card Utilities ─────────────────────────────────── */
 @utility glass-card-inset {
     background-color: #e5e7eb0a;
     border-top: 1px solid color-mix(in srgb, var(--color-white) 33%, transparent);
@@ -249,6 +323,7 @@
     box-shadow: 0 4px 24px color-mix(in srgb, var(--color-black) 6%, transparent);
 }
 
+/* ── Text Utilities ───────────────────────────────────────── */
 @utility text-stroke-outlined {
     -webkit-text-stroke: 1px color-mix(in srgb, var(--color-black) 30%, transparent);
     color: transparent;
@@ -264,6 +339,69 @@
     -webkit-text-stroke-color: var(--color-primary);
 }
 
+@utility gradient-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* ── Tracking Utility ─────────────────────────────────────── */
+@utility tracking-half {
+    letter-spacing: 0.02em;
+}
+
+/* ── Animation Utilities ──────────────────────────────────── */
+@utility animate-fade-in-up {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@utility animate-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@utility animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@utility animate-float-reverse {
+    animation: floatReverse 8s ease-in-out infinite;
+}
+
+@utility animate-pulse-soft {
+    animation: pulse-soft 4s ease-in-out infinite;
+}
+
+@utility animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+}
+
+@utility animate-slide-down {
+    animation: slide-down 0.3s ease forwards;
+}
+
+@utility animate-shimmer {
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+}
+
+/* ── Background Orb Utilities ─────────────────────────────── */
+@utility orb-primary {
+    position: absolute;
+    border-radius: 9999px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-primary) 30%, transparent), transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+@utility orb-accent {
+    position: absolute;
+    border-radius: 9999px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 20%, transparent), transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+}
+
+/* ── Misc Utilities ───────────────────────────────────────── */
 @utility primary-after {
     position: absolute;
     top: 50%;
@@ -282,4 +420,38 @@
     .gradient-primary {
         @apply bg-gradient-to-b from-primary-start to-primary-end hover:from-secondary-start hover:to-secondary-end;
     }
+
+    .gradient-text-primary {
+        @apply bg-gradient-to-r from-primary-start to-primary-end gradient-text;
+    }
+
+    .section-pad {
+        @apply py-20 md:py-28;
+    }
+
+    .card-base {
+        @apply rounded-2xl p-6 transition-all duration-300;
+    }
+}
+
+/* ── Swiper Overrides ─────────────────────────────────────── */
+.swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-muted);
+    opacity: 0.4;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--color-primary);
+    opacity: 1;
+    width: 24px;
+    border-radius: 9999px;
+}
+
+.swiper-button-disabled {
+    opacity: 0.3 !important;
+    pointer-events: none;
 }
