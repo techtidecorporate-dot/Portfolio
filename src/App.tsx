@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 import LandingPage from './pages/landing-page'
-import ThemeSwitch from './components/themeSwitch/themeSwitch'
 
 function App() {
   return (
@@ -8,7 +7,6 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
       </Routes>
-      <ThemeSwitch />
     </>
   )
 }

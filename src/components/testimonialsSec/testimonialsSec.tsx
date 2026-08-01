@@ -1,9 +1,9 @@
-import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
-import { Star, Quotes } from '@phosphor-icons/react';
 import TitleComponent from '../titleComponent/titleComponent';
+
 import 'swiper/css';
+import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 
 // MOCK DATA — replace with real testimonials before going live
@@ -14,8 +14,8 @@ const TESTIMONIALS = [
             'Muhammad delivered a stunning e-commerce platform that exceeded every expectation. His attention to performance and code quality is genuinely impressive. Shipped on time, zero bugs in production.',
         name: 'Sarah K.',
         role: 'Founder, Online Retail Brand',
-        rating: 5,
-        initials: 'SK',
+        company: 'Retailio',
+        avatar: '/testimonials/sarah-k.jpg', // TODO: replace with real photo
     },
     {
         id: 't2',
@@ -23,8 +23,8 @@ const TESTIMONIALS = [
             'Nadir completely rebuilt our legacy dashboard in React. The new UI is fast, intuitive, and our team productivity went up noticeably. He communicates clearly and meets every deadline.',
         name: 'James R.',
         role: 'CTO, B2B SaaS Startup',
-        rating: 5,
-        initials: 'JR',
+        company: 'Flowbase',
+        avatar: '/testimonials/james-r.jpg',
     },
     {
         id: 't3',
@@ -32,8 +32,8 @@ const TESTIMONIALS = [
             'He built our mobile app from scratch — iOS and Android — in 8 weeks. The quality is on par with apps from much larger teams. Highly recommend if you need full-stack mobile talent.',
         name: 'Aisha M.',
         role: 'Product Manager, HealthTech Company',
-        rating: 5,
-        initials: 'AM',
+        company: 'Vitalis',
+        avatar: '/testimonials/aisha-m.jpg',
     },
     {
         id: 't4',
@@ -41,8 +41,8 @@ const TESTIMONIALS = [
             'Our API was a nightmare before Nadir stepped in. He refactored the entire backend, added proper auth and caching, and reduced our response times by 60%. Exceptional engineer.',
         name: 'David L.',
         role: 'Lead Developer, Agency',
-        rating: 5,
-        initials: 'DL',
+        company: 'Northbeam',
+        avatar: '/testimonials/david-l.jpg',
     },
     {
         id: 't5',
@@ -50,8 +50,8 @@ const TESTIMONIALS = [
             'Translated our Figma designs to pixel-perfect React components in record time. Every hover state, every animation — exactly as designed. Will hire again without hesitation.',
         name: 'Priya S.',
         role: 'UI/UX Designer & Entrepreneur',
-        rating: 5,
-        initials: 'PS',
+        company: 'Studio Priya',
+        avatar: '/testimonials/priya-s.jpg',
     },
     {
         id: 't6',
@@ -59,88 +59,75 @@ const TESTIMONIALS = [
             'Muhammad set up our entire cloud infrastructure on AWS — CI/CD, Docker, auto-scaling. Our deployment process went from manual uploads to fully automated in two weeks.',
         name: 'Omar F.',
         role: 'DevOps Manager, Scale-up',
-        rating: 5,
-        initials: 'OF',
+        company: 'Ledgerly',
+        avatar: '/testimonials/omar-f.jpg',
     },
 ];
 
-function StarRating({ count }: { count: number }) {
-    return (
-        <div className="flex gap-0.5">
-            {Array.from({ length: count }).map((_, i) => (
-                <Star key={i} size={14} weight="fill" className="text-accent" />
-            ))}
-        </div>
-    );
-}
-
 export default function TestimonialsSec() {
+    const onAutoplayTimeLeft = (s: any, _time: number, progress: number) => {
+        if (s.el) {
+            s.el.style.setProperty('--slide-progress', `${(1 - progress) * 100}%`);
+        }
+    };
+
     return (
-        <section id="testimonials" className="section-pad bg-parchment dark:bg-ink-deep relative overflow-hidden">
+        <section id="testimonials" className="section-pad bg-black/90 relative overflow-hidden">
             <div className="orb-primary w-96 h-96 top-[-15%] right-[-5%] opacity-10" />
-            <div className="orb-accent   w-64 h-64 bottom-[-5%] left-[10%]  opacity-10" />
+            <div className="orb-accent w-64 h-64 bottom-[-5%] left-[10%]  opacity-10" />
 
-            <div className="container relative z-10">
-                {/* Header */}
-                <div className="flex flex-col items-center text-center gap-4 mb-12">
-                    <TitleComponent size="small-semibold" className="text-primary uppercase tracking-[0.18em]">
-                        Testimonials
-                    </TitleComponent>
-                    <h2 className="heading-h2 text-ink dark:text-surface max-w-2xl">
-                        What Clients{' '}
-                        <span className="gradient-text-primary">Say</span>
-                    </h2>
-                    <p className="text-muted max-w-md leading-relaxed">
-                        Real feedback from real clients. These are placeholder testimonials
-                        — replace with genuine reviews before launch.
-                    </p>
-                </div>
+            <div className="container">
+                <div className='relative z-10'>
+                    <div className="flex flex-col items-center text-center gap-4 mb-12">
+                        <TitleComponent size="small-semibold" className="text-primary uppercase tracking-[0.18em]">Testimonials</TitleComponent>
+                        <h2 className="heading-h2 max-w-2xl">
+                            <span className="text-surface">Voices of </span>
+                            <span className="text-surface/40">Satisfaction</span>
+                        </h2>
+                    </div>
 
-                <Swiper
-                    modules={[Autoplay, Pagination]}
-                    spaceBetween={24}
-                    slidesPerView={1}
-                    autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-                    pagination={{ clickable: true, el: '.testimonials-pagination' }}
-                    loop
-                    breakpoints={{
-                        640:  { slidesPerView: 1.3 },
-                        768:  { slidesPerView: 2 },
-                        1024: { slidesPerView: 3 },
-                    }}
-                    className="!pb-14"
-                >
-                    {TESTIMONIALS.map((t) => (
-                        <SwiperSlide key={t.id} className="h-auto">
-                            <div className="card-base glass-card-light dark:bg-card-bg dark:border dark:border-white/8 h-full flex flex-col gap-5 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
-                                {/* Quote icon */}
-                                <Quotes size={36} weight="fill" className="text-primary/30" />
-
-                                {/* Stars */}
-                                <StarRating count={t.rating} />
-
-                                {/* Quote text */}
-                                <p className="text-sm text-muted leading-relaxed flex-1 italic">
+                    <Swiper
+                        modules={[Pagination, Autoplay]}
+                        spaceBetween={30}
+                        slidesPerView={1}
+                        speed={3000}
+                        loop={true}
+                        pagination={{ clickable: true }}
+                        autoplay={{ delay: 5000, disableOnInteraction: false }}
+                        onAutoplayTimeLeft={onAutoplayTimeLeft}
+                    >
+                        {TESTIMONIALS.map((t) => (
+                            <SwiperSlide key={t.id} className='glass-card-inset dark:glass-card-inset rounded-3xl bg-white/[0.03] border border-white/8 px-8 py-10 l:px-14 l:py-14 flex flex-col gap-10 overflow-hidden'>
+                                <div
+                                    className="progress-fill absolute inset-0 bg-white/5 pointer-events-none z-0 origin-left duration-100 ease-linear"
+                                    style={{ width: 'var(--slide-progress, 0%)' }}
+                                />
+                                <p className="heading-h5 font-semibold text-surface leading-snug mb-5">
                                     "{t.quote}"
                                 </p>
+                                <div className="flex flex-wrap items-center justify-between gap-6">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-gradient-to-br from-primary-start to-primary-end">
+                                            <img
+                                                src={t.avatar}
+                                                alt={t.name}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        <div>
+                                            <p className="text-base font-semibold text-surface">{t.name}</p>
+                                            <p className="text-sm text-surface/50">{t.role}</p>
+                                        </div>
+                                    </div>
 
-                                {/* Author */}
-                                <div className="flex items-center gap-3 pt-4 border-t border-black/6 dark:border-white/6">
-                                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-start to-primary-end flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                                        {t.initials}
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-semibold text-ink dark:text-surface">{t.name}</p>
-                                        <p className="text-xs text-muted">{t.role}</p>
-                                    </div>
+                                    <span className="gradient-text-primary text-lg font-bold">
+                                        {t.company}
+                                    </span>
                                 </div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-
-                {/* Pagination */}
-                <div className="testimonials-pagination flex justify-center gap-2 mt-2" />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
             </div>
         </section>
     );
