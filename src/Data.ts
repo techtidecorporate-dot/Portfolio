@@ -3,7 +3,7 @@ import asanaIcon from './assets/asana.svg';
 import awsIcon from './assets/aws.webp';
 import sereNivaImg from './assets/sereniva.webp';
 import nexusImg from './assets/nexus.webp';
-import raynovaImg from './assets/raynova.webp';
+import raynovaImg from './assets/raynova-tech.webp';
 import auraCommerceImg from './assets/aura-commerce.webp';
 import bootstrapIcon from './assets/bootstrap.svg';
 import cloudinaryIcon from './assets/cloudinary.svg';

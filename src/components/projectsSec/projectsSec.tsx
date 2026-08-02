@@ -84,7 +84,7 @@ export default function ProjectsSec() {
                                     <div className="rounded-xl aspect-[16/11] flex items-center justify-center overflow-hidden">
                                         <img
                                             src={project.image}
-                                            alt={project.title}
+                                            alt={project.title + project.description}
                                             className="w-full h-full object-cover"
                                         />
                                     </div>

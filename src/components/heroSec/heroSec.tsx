@@ -39,7 +39,7 @@ export default function HeroSec() {
             <div className="container">
                 <div className='relative z-10 pt-28 pb-16 md:pt-32 md:pb-20'>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className="flex flex-col gap-6 order-2 lg:order-1">
+                        <div className="flex flex-col gap-6">
                             <div className="inline-flex items-center gap-2 self-start px-4 py-1.5 rounded-full glass-card-inset-2">
                                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                                 <span className="text-xs font-semibold text-black/80 tracking-widest uppercase">
@@ -86,8 +86,7 @@ export default function HeroSec() {
                                 </ThemeButton>
                             </div>
                         </div>
-
-                        <div className="order-1 lg:order-2 flex justify-center">
+                        <div className="flex justify-center">
                             <div className="relative">
                                 <div className="relative rounded-xl overflow-hidden">
                                     <img className='w-full h-full object-cover' src={heroImg} alt="Muhamamd Nadir Image" />
