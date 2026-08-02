@@ -1,8 +1,6 @@
 @import "./fonts/fonts.css";
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme {
     --font-geist: Geist;
 
@@ -19,53 +17,34 @@
     --color-tint-black: #2f2f2f;
     --color-grey: #4e4e4e;
 
-    /* ── New design system tokens ─────────────────────────── */
-    /* Page backgrounds */
     --color-ink: #1a1a2e;
     --color-ink-deep: #0d0d1a;
-
-    /* Light-mode page background — warm off-white */
     --color-parchment: #f9f7f4;
-
-    /* UI surfaces */
     --color-surface: #ffffff;
-    /* Dark mode card background */
     --color-card-bg: #16213e;
-
-    /* Secondary text / borders */
     --color-muted: #6b7280;
-
-    /* UI gray — used for secondary text, borders, dimmed icons */
     --color-slate: #6b7280;
-
-    /* Amber — pending / warning states */
     --color-amber: #f59e0b;
-
-    /* Signature accent — availability "selected" state only */
     --color-accent: #f59e0b;
-
-    /* ── Shadows ──────────────────────────────────────────── */
     --shadow-shadow1: inset 0px 0px 25px #e5e7eb1a;
     --shadow-shadow2: inset 0px 0px 16px #0a0a0a33;
     --shadow-shadow2-effect: inset 0px 0px 16px #0a0a0a1a;
     --shadow-inset: inset 1px 0px 0px #0a0a0a4d, inset -1px 0px 0px #0a0a0a4d;
     --shadow-card-hover: 0 16px 40px rgb(15 23 42 / 0.12);
 
-    /* ── Font Size Variables ──────────────────────────────── */
     --font-size-h1: clamp(36px, 5vw, 64px);
     --font-size-h2: clamp(28px, 4vw, 48px);
     --font-size-h3: clamp(24px, 3.5vw, 36px);
     --font-size-h4: clamp(20px, 3vw, 32px);
     --font-size-h5: clamp(18px, 2.5vw, 28px);
     --font-size-h6: clamp(16px, 2vw, 24px);
-    --font-size-l: 20px;
-    --font-size-m: 18px;
-    --font-size-s: 16px;
+    --font-size-lg: 20px;
+    --font-size-md: 18px;
+    --font-size-sm: 16px;
     --font-size-xs: 14px;
     --font-size-xss: 12px;
 }
 
-/* ── Keyframe Animations ──────────────────────────────────── */
 @keyframes marquee-rtl {
     from {
         transform: translateX(0);
@@ -252,11 +231,6 @@
         transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    html.dark body {
-        background-color: var(--color-ink);
-        color: var(--color-surface);
-    }
-
     body::-webkit-scrollbar {
         width: 8px;
     }
@@ -364,7 +338,6 @@
     }
 }
 
-/* ── Layout Utilities ─────────────────────────────────────── */
 @utility container {
     max-width: 1320px;
     padding-inline: 20px;
@@ -377,7 +350,6 @@
     margin-inline: auto;
 }
 
-/* ── Glass Card Utilities ─────────────────────────────────── */
 @utility glass-card-inset {
     background-color: #e5e7eb0a;
     border-top: 1px solid color-mix(in srgb, var(--color-white) 33%, transparent);
@@ -406,7 +378,6 @@
     box-shadow: 0 4px 24px color-mix(in srgb, var(--color-black) 6%, transparent);
 }
 
-/* ── Text Utilities ───────────────────────────────────────── */
 @utility text-stroke-outlined {
     -webkit-text-stroke: 1px color-mix(in srgb, var(--color-black) 30%, transparent);
     color: transparent;
@@ -428,12 +399,10 @@
     color: transparent;
 }
 
-/* ── Tracking Utility ─────────────────────────────────────── */
 @utility tracking-half {
     letter-spacing: 0.02em;
 }
 
-/* ── Animation Utilities ──────────────────────────────────── */
 @utility animate-fade-in-up {
     animation: fadeInUp 0.6s ease forwards;
 }
@@ -467,7 +436,6 @@
     animation: shimmer 3s linear infinite;
 }
 
-/* ── Background Orb Utilities ─────────────────────────────── */
 @utility orb-primary {
     position: absolute;
     border-radius: 9999px;
@@ -484,7 +452,6 @@
     pointer-events: none;
 }
 
-/* ── Misc Utilities ───────────────────────────────────────── */
 @utility primary-after {
     position: absolute;
     top: 50%;
@@ -517,7 +484,16 @@
     }
 }
 
-/* ── Swiper Overrides ─────────────────────────────────────── */
+.swiper .swiper-pagination {
+    position: relative !important;
+    bottom: 0 !important;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
 .swiper-pagination-bullet {
     width: 8px;
     height: 8px;

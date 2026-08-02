@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import clsx from 'clsx';
+import { useEffect, useRef, useState } from 'react';
 
 interface Stat {
     value: number;
@@ -63,15 +62,9 @@ function StatCard({ stat, index, triggered }: { stat: Stat; index: number; trigg
 
     return (
         <div
-            className={clsx(
-                'card-base glass-card-light dark:bg-card-bg dark:border dark:border-white/8',
-                'hover:shadow-card-hover hover:-translate-y-1',
-                'flex flex-col gap-4 group',
-                'animate-fade-in-up',
-            )}
+            className='flex flex-col items-center'
             style={{ animationDelay: `${index * 0.12}s`, animationFillMode: 'both' }}
         >
-            {/* Number */}
             <div className="flex items-end gap-1">
                 <span className="heading-h2 gradient-text-primary font-extrabold leading-none">
                     {triggered ? count : 0}
@@ -81,9 +74,8 @@ function StatCard({ stat, index, triggered }: { stat: Stat; index: number; trigg
                 </span>
             </div>
 
-            {/* Label */}
             <div>
-                <p className="text-base font-semibold text-ink dark:text-surface mb-1">
+                <p className="text-base font-semibold text-black/50 mt-1">
                     {stat.label}
                 </p>
             </div>
@@ -110,7 +102,7 @@ export default function StatsSec() {
     }, []);
 
     return (
-        <section className="py-10 bg-white relative overflow-hidden">
+        <section className="py-10 bg-black/5 relative overflow-hidden">
             <div className="container relative z-10" ref={ref}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {STATS.map((stat, i) => (

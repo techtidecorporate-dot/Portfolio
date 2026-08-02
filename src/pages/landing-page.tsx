@@ -8,22 +8,28 @@ import TestimonialsSec from '../components/testimonialsSec/testimonialsSec';
 import ContactSec from '../components/contactSec/contactSec';
 import Footer from '../components/footer/footer';
 import SocialSidebar from '../components/socialSidebar/socialSidebar';
+import SkillsSec from '@/components/skillsSec/skillsSec';
 
-export default function LandingPage() {
+interface FooterProps {
+    scrollToSection: (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => void;
+}
+
+export default function LandingPage({ scrollToSection }: FooterProps) {
     return (
         <>
-            <Header />
+            <Header scrollToSection={scrollToSection} />
             <SocialSidebar />
             <main>
                 <HeroSec />
                 <StatsSec />
                 <AboutSec />
+                <SkillsSec />
                 <ServicesSec />
                 <ProjectsSec />
                 <TestimonialsSec />
                 <ContactSec />
             </main>
-            <Footer />
+            <Footer scrollToSection={scrollToSection} />
         </>
     );
 }

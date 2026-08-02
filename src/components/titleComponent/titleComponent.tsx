@@ -27,14 +27,14 @@ const PARAGRAPH_CLASSES: Record<ParagraphSize, string> = {
     "base-medium": "text-base font-medium tracking-half",
     "base-semibold": "text-base font-semibold tracking-half",
     "base-bold": "text-base font-bold tracking-half",
-    large: "text-base l:text-lg font-normal tracking-half",
-    "large-medium": "text-base l:text-lg font-medium tracking-half",
-    "large-semibold": "text-base l:text-lg font-semibold tracking-half",
-    "large-bold": "text-base l:text-lg font-bold tracking-half",
-    "extra-large": "text-lg l:text-xl font-normal tracking-half",
-    "extra-large-medium": "text-lg l:text-xl font-medium tracking-half",
-    "extra-large-semibold": "text-lg l:text-xl font-semibold tracking-half",
-    "extra-large-bold": "text-lg l:text-xl font-bold tracking-half",
+    large: "text-base lg:text-lg font-normal tracking-half",
+    "large-medium": "text-base lg:text-lg font-medium tracking-half",
+    "large-semibold": "text-base lg:text-lg font-semibold tracking-half",
+    "large-bold": "text-base lg:text-lg font-bold tracking-half",
+    "extra-large": "text-lg lg:text-xl font-normal tracking-half",
+    "extra-large-medium": "text-lg lg:text-xl font-medium tracking-half",
+    "extra-large-semibold": "text-lg lg:text-xl font-semibold tracking-half",
+    "extra-large-bold": "text-lg lg:text-xl font-bold tracking-half",
 };
 
 const TitleComponent: React.FC<TitleComponentProps> = ({ size = "base", className = "", children }) => {

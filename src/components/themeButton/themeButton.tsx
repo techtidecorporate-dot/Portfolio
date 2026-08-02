@@ -38,12 +38,12 @@ const ThemeButton: React.FC<ThemeButtonProps> = ({
 }) => {
 
 
-    const defaultTextSize = primary2 ? 'text-sm m:text-base font-semibold' : 'm:text-lg text-base font-semibold';
+    const defaultTextSize = primary2 ? 'text-sm md:text-base font-semibold' : 'md:text-lg text-base font-semibold';
     const classes = clsx(
         'relative inline-flex items-center justify-center group/button',
         className,
         defaultTextSize,
-        variant === 'underline' ? 'py-1 px-0' : primary2 ? 'px-6 py-2 m:py-6' : 'py-2.5 xl:py-3 px-8 xl:px-10',
+        variant === 'underline' ? 'py-1 px-0' : primary2 ? 'px-6 py-2 md:py-6' : 'py-2.5 xl:py-3 px-8 xl:px-10',
         primary2 ? 'rounded-md' : (variant !== 'underline') ? 'rounded-full' : 'rounded-none',
         VARIANT_CLASSES[variant],
         'overflow-hidden duration-700 ease-in-out',
